@@ -1,5 +1,6 @@
 const categoryImages = {
-  electronics: "src/assets/images/electronic.jpg",
+  electronics:
+    "https://www.codrey.com/wp-content/uploads/2017/12/Consumer-Electronics-1.png",
   jewelery: "src/assets/images/jewelery.jpg",
   "men's clothing": "src/assets/images/mensclothing.jpg",
   "women's clothing": "src/assets/images/clothes.jpg",
