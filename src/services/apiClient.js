@@ -9,6 +9,7 @@ const apiClient = axios.create({
 
 export const getProducts = async () => {
   const response = await apiClient.get("/products");
+  console.log(response);
 
   return response.data;
 };
@@ -21,6 +22,8 @@ export const getCategories = async () => {
 
 export const getProductsByCategory = async (category) => {
   const response = await apiClient.get(`/products/category/${category}`);
+  console.log(response);
+
   return response.data;
 };
 

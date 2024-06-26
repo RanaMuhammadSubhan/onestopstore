@@ -5,7 +5,7 @@
 
 // const ProductList = () => {
 //   const { products, isLoading, isError } = useProducts();
- 
+
 //   if (isLoading) return <div>Loading...</div>;
 //   if (isError) return <div>Failed to load products.</div>;
 
@@ -46,10 +46,10 @@ const ProductList = ({ category }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
-  useEffect(() => {                        
+  useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
-      try {M
+      try {
         const fetchedProducts = category
           ? await getProductsByCategory(category)
           : await getProducts();
@@ -98,4 +98,3 @@ const ProductList = ({ category }) => {
 };
 
 export default ProductList;
-
