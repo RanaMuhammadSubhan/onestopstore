@@ -57,11 +57,13 @@ const CategoryList = ({ onCategorySelect }) => {
             onClick={() => onCategorySelect(category)}
           >
             <img
-              src={categoryImages[category] || "/src/assets/categories/default.jpg"}
+              src={
+                categoryImages[category] || "/src/assets/categories/default.jpg"
+              }
               alt={category}
               className="w-full h-48 object-cover rounded-2xl"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 bg-black rounded-2xl bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <h3 className="text-white text-lg font-semibold">
                 {category.toUpperCase()}
               </h3>
@@ -74,4 +76,3 @@ const CategoryList = ({ onCategorySelect }) => {
 };
 
 export default CategoryList;
-

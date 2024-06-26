@@ -78,12 +78,12 @@ const ProductList = ({ category }) => {
           <Link
             key={product.id}
             to={`/product/${product.id}`}
-            className="bg-white p-4 shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300"
+            className="bg-white p-4 shadow-md rounded-lg hover:shadow-xl transition-shadow duration-300 "
           >
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-72 w-80 object-cover mb-4"
+              className="w-full h-72 w-80 object-cover mb-4 rounded-2xl"
             />
             <h3 className="text-lg mb-2">{product.title}</h3>
             <p className="text-black-500 font-semibold text-2xl mb-2">
