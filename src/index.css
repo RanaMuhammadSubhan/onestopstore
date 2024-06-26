@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap');
+
+body {
+  @apply font-cabin;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* src/index.css */
