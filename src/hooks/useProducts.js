@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import { getProducts } from "../services/apiClient";
+import { getProducts } from "../services/ClientServices";
 
 const fetcher = async () => {
   const products = await getProducts();

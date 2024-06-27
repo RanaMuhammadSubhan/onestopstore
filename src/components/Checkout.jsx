@@ -1,4 +1,3 @@
-// src/components/Checkout.js
 import React, { useState } from "react";
 import useCartStore from "../cartStore";
 import Swal from "sweetalert2";

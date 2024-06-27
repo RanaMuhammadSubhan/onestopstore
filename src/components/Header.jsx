@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import useCartStore from "../cartStore";
-
+import Search from "./Search";
 const Header = () => {
   const { cart } = useCartStore();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const handleSearchClick = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
   return (
     <nav className="bg-white border-gray-200 dark:bg-black">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -47,12 +52,35 @@ const Header = () => {
               </span>
             )}
           </Link>
+          <button
+            onClick={handleSearchClick}
+            className="
+          px-2 ml-5 rounded-full text-green-50 text-white"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+          <button>Cart</button>
+          {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
         </div>
+        {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-user"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border  rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-black  dark:border-gray-700">
             <li>
               <Link
                 to="/"

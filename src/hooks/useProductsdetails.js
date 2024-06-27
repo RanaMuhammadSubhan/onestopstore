@@ -1,6 +1,6 @@
 // src/hooks/useProduct.js
 import useSWR from "swr";
-import { getProductById } from "../services/apiClient";
+import { getProductById } from "../services/ClientServices";
 
 const fetchProduct = async (id) => {
   console.log(id);

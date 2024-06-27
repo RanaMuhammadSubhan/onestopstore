@@ -1,6 +1,6 @@
 // src/hooks/useCategories.js
 import useSWR from "swr";
-import { getCategories } from "../services/apiClient";
+import { getCategories } from "../services/ClientServices";
 
 const fetcher = async () => {
   const categories = await getCategories();

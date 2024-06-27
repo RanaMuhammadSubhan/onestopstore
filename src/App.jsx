@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useSearchStore from "../src/useSearchStore";
+import { getProducts } from "./services/ClientServices";
+import useSWR from "swr"; // Import useSWR for data fetching
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
@@ -9,6 +12,18 @@ import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 function App() {
+  const setProducts = useSearchStore((state) => state.setProducts);
+
+  const { data, error } = useSWR("/products", getProducts);
+
+  useEffect(() => {
+    if (data) {
+      setProducts(data);
+    }
+  }, [data, setProducts]);
+
+  if (error) return <div>Failed to load products</div>;
+  if (!data) return <div>Loading...</div>;
   return (
     <Router>
       <div className="app-container">
