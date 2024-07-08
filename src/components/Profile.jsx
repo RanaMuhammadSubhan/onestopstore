@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
-const API_URL = "http://localhost:5000/api/users";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const [isEditing, setIsEditing] = useState(false);

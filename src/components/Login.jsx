@@ -6,13 +6,12 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
-const API_URL = "http://localhost:5000/api/users";
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  console.log(API_URL);
   const handleLogin = async (e) => {
     e.preventDefault();
 
