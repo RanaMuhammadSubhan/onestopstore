@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useSearchStore from "../useSearchStore";
+import useSearchStore from "../Store/useSearchStore";
 import { Link } from "react-router-dom";
 const Search = ({ onClose }) => {
   const [input, setInput] = useState("");

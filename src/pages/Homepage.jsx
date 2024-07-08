@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./App.css";
-import Slider from "./components/slider";
-import ProductList from "./components/Productlist";
-import CategoryList from "./components//CategoryList";
+import "../App.css";
+import Slider from "../components/slider";
+import ProductList from "../components/Productlist";
+import CategoryList from "../components/CategoryList";
 
 function Homepage() {
   const [selectedCategory, setSelectedCategory] = useState(null);

@@ -1,4 +1,4 @@
-import useCartStore from '../cartStore';
+import useCartStore from "../Store/cartStore";
 
 export const addItemToCart = (item) => {
   useCartStore.getState().addItem(item);

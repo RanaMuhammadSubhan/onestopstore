@@ -81,11 +81,14 @@ const ProductList = ({ category }) => {
             className="bg-white p-4 rounded-lg hover:shadow-xl transition-shadow duration-300 "
           >
             <img
+              loading="lazy"
               src={product.image}
               alt={product.title}
-              className="w-full h-96 w-96 object-cover mb-4 rounded-2xl transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 ..."
+              className="w-full h-64 md:h-80 lg:h-96 object-cover mb-4 rounded-2xl transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
             />
+
             <h3 className="text-lg mb-2">{product.title}</h3>
+
             <p className="text-black-500 font-semibold text-2xl mb-2">
               ${product.price}
             </p>

@@ -1,4 +1,5 @@
 import banner from "../assets/images/banner1.png";
+import { Link } from "react-router-dom";
 const Slider = () => {
   return (
     <div className="bg-gradient-to-r from-purple-500 to-blue-500 min-h-96 flex items-center justify-center">
@@ -14,13 +15,19 @@ const Slider = () => {
             <button className="bg-transparent border-2 bg-white text-black font-semibold py-2 px-4 rounded">
               ABOUT US
             </button>
-            <button className="bg-black text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-black duration-300">
-              SHOP NOW
-            </button>
+            <Link to="/">
+              <button className="bg-black text-white font-semibold py-2 px-4 rounded transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-black duration-300">
+                SHOP NOW
+              </button>
+            </Link>
           </div>
         </div>
         <div className="lg:w-1/2 flex justify-center">
-          <img src={banner} alt="Headphones" className="w-full max-w-md" />
+          <img
+            src={banner}
+            alt="Headphones"
+            className="w-full max-w-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300 ..."
+          />
         </div>
       </div>
     </div>

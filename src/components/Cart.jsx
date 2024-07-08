@@ -1,5 +1,5 @@
 import React from "react";
-import useCartStore from "../cartStore";
+import useCartStore from "../Store/cartStore";
 import { Link } from "react-router-dom";
 import {
   removeItemFromCart,

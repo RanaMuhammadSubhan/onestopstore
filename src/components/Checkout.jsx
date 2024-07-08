@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useCartStore from "../cartStore";
+import useCartStore from "../Store/cartStore";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const Checkout = () => {

@@ -1,16 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import useCartStore from "../cartStore";
+import { useState, useEffect, useRef } from "react";
+import useCartStore from "../Store/cartStore";
+import { useNavigate } from "react-router-dom";
+
 import Search from "./Search";
 const Header = () => {
   const { cart } = useCartStore();
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen);
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("userInfo");
+    navigate("/login");
+  };
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const isAuthenticated = !!localStorage.getItem("userInfo");
   return (
     <nav className="bg-white border-gray-200 dark:bg-black">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -52,6 +79,7 @@ const Header = () => {
               </span>
             )}
           </Link>
+
           <button
             onClick={handleSearchClick}
             className="
@@ -72,10 +100,69 @@ const Header = () => {
               />
             </svg>
           </button>
-          <button>Cart</button>
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={toggleDropdown}
+              className="px-2 ml-5 rounded-full focus:outline-none"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+                />
+              </svg>
+            </button>
+            {isOpen && (
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg">
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsOpen(false)} // Close dropdown on link click
+                    >
+                      Account
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/signup"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsOpen(false)} // Close dropdown on link click
+                    >
+                      Sign Up
+                    </Link>
+                    <Link
+                      to="/login"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsOpen(false)} // Close dropdown on link click
+                    >
+                      Login
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+          {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
           {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
         </div>
-        {isSearchOpen && <Search onClose={() => setIsSearchOpen(false)} />}
+
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-user"
@@ -106,14 +193,7 @@ const Header = () => {
                 Services
               </Link>
             </li>
-            <li>
-              <Link
-                to="/pricing"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >
-                Pricing
-              </Link>
-            </li>
+            \
             <li>
               <Link
                 to="/contact"
