@@ -68,7 +68,7 @@ const Login = () => {
   };
 
   const handleFacebookLogin = () => {
-    window.location.href = "http://localhost:5000/auth/facebook/callback";
+    window.location.href = `${API_URL}/auth/facebook/callback`;
   };
 
   return (
