@@ -30,8 +30,8 @@ const Profile = () => {
     if (userInfo) {
       setFormData({
         name: userInfo.name,
-        age: userInfo.age,
-        gender: userInfo.gender,
+        age: userInfo.age || "null", // Initialize with empty string if not available
+        gender: userInfo.gender || "null", // Initialize with empty string if not available
         email: userInfo.email,
         profilePicture: userInfo.profilePicture,
       });
@@ -53,13 +53,12 @@ const Profile = () => {
         .then((res) => {
           const googleProfile = res.data;
           setProfile(googleProfile);
-          setFormData({
+          setFormData((prevData) => ({
+            ...prevData,
             name: googleProfile.name,
-            age: googleProfile.age,
-            gender: googleProfile.gender,
             email: googleProfile.email,
             profilePicture: googleProfile.picture,
-          });
+          }));
         })
         .catch((err) => console.log(err));
     }
@@ -119,7 +118,8 @@ const Profile = () => {
       });
       navigate("/");
     } catch (error) {
-      alert("Something went wrong");
+      setIsEditing(false);
+
       console.error(error);
     }
   };
@@ -225,6 +225,7 @@ const Profile = () => {
                   onChange={handleChange}
                   className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 >
+                  <option value="">Select Gender</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>

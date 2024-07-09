@@ -43,8 +43,20 @@ const Login = () => {
     }
   };
 
-  const handleGoogleLoginSuccess = (response) => {
+  const handleGoogleLoginSuccess = async (response) => {
     const decoded = jwtDecode(response.credential);
+    // try {
+    //   console.log(response);
+    //   const token = response.getAuthResponse().id_token; // Assuming this gets the Google OAuth token
+    //   const { data } = await axios.post(`${API_URL}/api/google-signin`, {
+    //     token,
+    //   });
+    //   localStorage.setItem("userInfo", JSON.stringify(data)); // Store user info in localStorage
+    //   setUser(data); // Set user state in React component
+    // } catch (error) {
+    //   console.error("Google Sign-In Error:", error);
+    //   // Handle error
+    // }
     console.log("result", decoded);
     const userInfo = {
       name: decoded.name,
